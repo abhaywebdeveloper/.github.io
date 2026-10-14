@@ -1,0 +1,1784 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abhay Kumar Singh - Senior Full Stack Web Developer & AI Solutions Engineer</title>
+  
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================
+       Creative UI/UX Design System & Theme Tokens
+       ========================================================== */
+    :root {
+      --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      /* Light Theme Palette */
+      --bg-page: #f1f5f9;
+      --bg-surface: #ffffff;
+      --bg-card: #f8fafc;
+      --bg-card-hover: #f1f5f9;
+      --bg-badge: #e2e8f0;
+      
+      --text-title: #0f172a;
+      --text-body: #334155;
+      --text-muted: #64748b;
+      --text-subtle: #94a3b8;
+      
+      /* Brand Accents */
+      --primary: #1e40af;
+      --primary-light: #2563eb;
+      --primary-gradient: linear-gradient(135deg, #1d4ed8 0%, #2563eb 50%, #4f46e5 100%);
+      --primary-subtle: #eff6ff;
+      --primary-border: #bfdbfe;
+      
+      /* AI & Automation Accents */
+      --ai-gradient: linear-gradient(135deg, #7c3aed 0%, #6366f1 50%, #06b6d4 100%);
+      --ai-bg: #faf5ff;
+      --ai-border: #e9d5ff;
+      --ai-text: #6b21a8;
+      --ai-badge: #f3e8ff;
+      
+      /* Card & Borders */
+      --border-subtle: #e2e8f0;
+      --border-strong: #cbd5e1;
+      
+      /* Elevation Shadows */
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
+      --shadow-md: 0 4px 10px -2px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
+      --shadow-lg: 0 12px 24px -4px rgba(15, 23, 42, 0.08), 0 4px 8px -2px rgba(15, 23, 42, 0.03);
+      
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --radius-full: 9999px;
+    }
+
+    [data-theme="dark"] {
+      --bg-page: #0b0f19;
+      --bg-surface: #111827;
+      --bg-card: #151e32;
+      --bg-card-hover: #1e293b;
+      --bg-badge: #1f2937;
+      
+      --text-title: #f8fafc;
+      --text-body: #cbd5e1;
+      --text-muted: #94a3b8;
+      --text-subtle: #64748b;
+      
+      --primary: #3b82f6;
+      --primary-light: #60a5fa;
+      --primary-gradient: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #818cf8 100%);
+      --primary-subtle: rgba(59, 130, 246, 0.12);
+      --primary-border: #1e3a8a;
+      
+      --ai-gradient: linear-gradient(135deg, #c084fc 0%, #818cf8 50%, #38bdf8 100%);
+      --ai-bg: rgba(168, 85, 247, 0.08);
+      --ai-border: rgba(168, 85, 247, 0.28);
+      --ai-text: #d8b4fe;
+      --ai-badge: rgba(168, 85, 247, 0.16);
+      
+      --border-subtle: #1f293d;
+      --border-strong: #374151;
+      
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+      --shadow-md: 0 6px 14px rgba(0, 0, 0, 0.5);
+      --shadow-lg: 0 14px 28px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Base Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.15s ease, box-shadow 0.18s ease;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-page);
+      color: var(--text-body);
+      line-height: 1.5;
+      font-size: 10pt;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Reading Progress Bar (Screen Only) */
+    .scroll-progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, #2563eb, #7c3aed, #06b6d4);
+      z-index: 1100;
+      transition: width 0.08s ease-out;
+    }
+
+    /* Top Action Bar (Screen Only) */
+    .top-action-bar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(15, 23, 42, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      color: #f8fafc;
+      padding: 10px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .top-title-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: var(--radius-full);
+      background: var(--ai-gradient);
+      color: white;
+      font-weight: 800;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.45);
+    }
+
+    .brand-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: -0.2px;
+    }
+
+    .brand-role {
+      font-size: 11px;
+      color: #94a3b8;
+    }
+
+    .top-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 15px;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 12px;
+      cursor: pointer;
+      border: none;
+      font-family: var(--font-display);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-primary {
+      background: var(--primary-gradient);
+      color: white;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.5);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: #f8fafc;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.16);
+      transform: translateY(-1px);
+    }
+
+    /* Resume Document Canvas */
+    .resume-wrapper {
+      max-width: 940px;
+      margin: 20px auto 44px;
+      padding: 0 16px;
+    }
+
+    .resume-sheet {
+      background: var(--bg-surface);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-lg);
+      padding: 32px 38px;
+      position: relative;
+    }
+
+    .resume-sheet::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: var(--primary-gradient);
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+
+    /* Interactive Filter & Quick Nav Hub (Screen Only) */
+    .screen-interactive-hub {
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px dashed var(--border-subtle);
+    }
+
+    .quick-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .quick-nav a {
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 3px 9px;
+      border-radius: var(--radius-full);
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .quick-nav a:hover {
+      color: var(--primary-light);
+      background: var(--primary-subtle);
+      border-color: var(--primary-border);
+      transform: translateY(-1px);
+    }
+
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .filter-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      color: var(--text-subtle);
+      margin-right: 4px;
+    }
+
+    .filter-pill {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+      color: var(--text-body);
+      cursor: pointer;
+    }
+
+    .filter-pill:hover {
+      border-color: var(--primary-light);
+      color: var(--primary-light);
+    }
+
+    .filter-pill.active {
+      background: var(--primary-gradient);
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.35);
+    }
+
+    .spotlight-active {
+      outline: 2px solid var(--primary-light) !important;
+      box-shadow: 0 0 16px -2px rgba(37, 99, 235, 0.45) !important;
+      transform: translateY(-1px);
+    }
+
+    .spotlight-dimmed {
+      opacity: 0.32 !important;
+    }
+
+    /* Hero / Header */
+    .hero-header {
+      margin-bottom: 18px;
+    }
+
+    .hero-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 9.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #16a34a;
+      background: rgba(22, 163, 74, 0.1);
+      border: 1px solid rgba(22, 163, 74, 0.25);
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      margin-bottom: 6px;
+    }
+
+    .pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: var(--radius-full);
+      background-color: #16a34a;
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.6); }
+      70% { box-shadow: 0 0 0 5px rgba(22, 163, 74, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); }
+    }
+
+    .candidate-name {
+      font-family: var(--font-display);
+      font-size: 26pt;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      line-height: 1.1;
+      color: var(--text-title);
+      margin-bottom: 4px;
+    }
+
+    .candidate-title {
+      font-family: var(--font-display);
+      font-size: 13.5pt;
+      font-weight: 700;
+      color: var(--primary-light);
+      margin-bottom: 3px;
+    }
+
+    .candidate-domains {
+      font-size: 9.6pt;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .hero-contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 12px;
+      margin-top: 10px;
+    }
+
+    .contact-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 9pt;
+      color: var(--text-body);
+      text-decoration: none;
+      padding: 3px 9px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      cursor: pointer;
+    }
+
+    .contact-chip:hover {
+      border-color: var(--primary-light);
+      color: var(--primary-light);
+      transform: translateY(-1px);
+    }
+
+    .contact-chip svg {
+      width: 13px;
+      height: 13px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    /* Metrics Bar */
+    .metrics-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 18px;
+      padding: 10px 14px;
+      border-radius: var(--radius-md);
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .metric-card {
+      text-align: center;
+      padding: 2px;
+      border-right: 1px solid var(--border-subtle);
+    }
+
+    .metric-card:last-child {
+      border-right: none;
+    }
+
+    .metric-value {
+      font-family: var(--font-display);
+      font-size: 14pt;
+      font-weight: 800;
+      color: var(--primary-light);
+      line-height: 1.1;
+    }
+
+    .metric-label {
+      font-size: 7.8pt;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-top: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    /* Sections */
+    .resume-section {
+      margin-bottom: 20px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1.5px solid var(--border-subtle);
+      padding-bottom: 5px;
+      margin-bottom: 12px;
+    }
+
+    .section-icon-badge {
+      width: 24px;
+      height: 24px;
+      border-radius: var(--radius-sm);
+      background: var(--primary-subtle);
+      color: var(--primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 11.2pt;
+      font-weight: 700;
+      color: var(--text-title);
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin: 0;
+    }
+
+    /* Summary Card */
+    .summary-box {
+      font-size: 9.4pt;
+      line-height: 1.55;
+      color: var(--text-body);
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-left: 4px solid var(--primary-light);
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      text-align: justify;
+    }
+
+    .summary-box strong {
+      color: var(--text-title);
+      font-weight: 600;
+    }
+
+    /* AI Showcase Card */
+    .ai-hero-card {
+      background: var(--ai-bg);
+      border: 1px solid var(--ai-border);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      margin-bottom: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ai-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .ai-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--ai-gradient);
+      color: white;
+      font-size: 8.4pt;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: var(--radius-full);
+      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.25);
+    }
+
+    .ai-content-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px 18px;
+      font-size: 9pt;
+    }
+
+    .ai-feature-row {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .ai-feature-label {
+      font-weight: 700;
+      color: var(--ai-text);
+      font-size: 8.8pt;
+    }
+
+    .ai-feature-desc {
+      font-size: 8.4pt;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+      line-height: 1.35;
+    }
+
+    .ai-tag-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .ai-tag {
+      font-size: 8pt;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: var(--radius-sm);
+      background: var(--ai-badge);
+      color: var(--ai-text);
+      border: 1px solid var(--ai-border);
+    }
+
+    /* Skills Grid */
+    .skills-detailed-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px 14px;
+    }
+
+    .skill-card-detailed {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 10px 12px;
+    }
+
+    .skill-card-title {
+      font-family: var(--font-display);
+      font-size: 9.4pt;
+      font-weight: 700;
+      color: var(--text-title);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .skill-card-desc {
+      font-size: 8.2pt;
+      color: var(--text-muted);
+      line-height: 1.35;
+      margin-bottom: 6px;
+    }
+
+    .skill-chips-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .skill-chip {
+      font-size: 8pt;
+      font-weight: 500;
+      padding: 2px 7px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-surface);
+      color: var(--text-body);
+      border: 1px solid var(--border-strong);
+    }
+
+    /* Experience */
+    .experience-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .job-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+    }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px 10px;
+      margin-bottom: 4px;
+    }
+
+    .job-role-company {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: var(--text-title);
+    }
+
+    .job-company {
+      color: var(--primary-light);
+    }
+
+    .job-date-badge {
+      font-size: 8.4pt;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--bg-surface);
+      padding: 2px 9px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .job-metrics-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 8px;
+    }
+
+    .metric-chip {
+      font-size: 7.8pt;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: var(--radius-full);
+      background: var(--primary-subtle);
+      color: var(--primary-light);
+      border: 1px solid var(--primary-border);
+    }
+
+    .metric-chip.ai {
+      background: var(--ai-badge);
+      color: var(--ai-text);
+      border-color: var(--ai-border);
+    }
+
+    .impact-bullets {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .impact-bullets li {
+      position: relative;
+      padding-left: 16px;
+      font-size: 9pt;
+      color: var(--text-body);
+      margin-bottom: 5px;
+      line-height: 1.45;
+      text-align: justify;
+    }
+
+    .impact-bullets li::before {
+      content: "▹";
+      position: absolute;
+      left: 1px;
+      color: var(--primary-light);
+      font-weight: bold;
+    }
+
+    .impact-bullets li strong {
+      color: var(--text-title);
+      font-weight: 600;
+    }
+
+    /* Banking Matrix */
+    .banking-matrix {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px 12px;
+    }
+
+    .bank-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-left: 3.5px solid var(--primary-light);
+      border-radius: var(--radius-sm);
+      padding: 8px 12px;
+      transition: all 0.15s ease;
+    }
+
+    .bank-card:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .bank-card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3px;
+    }
+
+    .bank-card-title {
+      font-weight: 700;
+      font-size: 9pt;
+      color: var(--text-title);
+    }
+
+    .bank-pill {
+      font-size: 7.2pt;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-surface);
+      color: var(--text-muted);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .bank-card-desc {
+      font-size: 8.4pt;
+      color: var(--text-muted);
+      line-height: 1.38;
+      text-align: justify;
+    }
+
+    /* Flagship Projects */
+    .spotlight-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      margin-bottom: 12px;
+    }
+
+    .spotlight-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 4px;
+    }
+
+    .spotlight-title {
+      font-family: var(--font-display);
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: var(--text-title);
+    }
+
+    .spotlight-client {
+      font-size: 8.6pt;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .spotlight-tech {
+      font-size: 8.4pt;
+      font-weight: 600;
+      color: var(--primary-light);
+      margin-bottom: 6px;
+    }
+
+    .spotlight-link {
+      color: var(--primary-light);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .spotlight-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Commercial Portfolio Grid */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px 12px;
+    }
+
+    .portfolio-tile {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 8px 12px;
+    }
+
+    .portfolio-tile-name {
+      font-weight: 700;
+      font-size: 9pt;
+      color: var(--text-title);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2px;
+    }
+
+    .portfolio-tile-cat {
+      font-size: 7.6pt;
+      font-weight: 600;
+      color: var(--primary-light);
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .portfolio-tile-desc {
+      font-size: 8.3pt;
+      color: var(--text-muted);
+      line-height: 1.35;
+    }
+
+    /* Education & Personal */
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px 16px;
+    }
+
+    .education-item {
+      font-size: 8.8pt;
+    }
+
+    .education-degree {
+      font-weight: 700;
+      color: var(--text-title);
+    }
+
+    .education-inst {
+      color: var(--text-muted);
+      font-size: 8.4pt;
+    }
+
+    .personal-table-card {
+      background: var(--bg-card);
+      padding: 10px 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .personal-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px 14px;
+      font-size: 8.6pt;
+    }
+
+    .personal-field strong {
+      display: block;
+      font-size: 7.8pt;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      color: var(--text-muted);
+    }
+
+    .declaration-row {
+      margin-top: 12px;
+      padding-top: 8px;
+      border-top: 1px dashed var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      font-size: 8.4pt;
+      color: var(--text-muted);
+    }
+
+    .sign-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--text-title);
+      font-size: 9.4pt;
+    }
+
+    /* Interactive Floating Elements (Screen Only) */
+    .toast-box {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 2000;
+      background: rgba(15, 23, 42, 0.95);
+      color: #ffffff;
+      padding: 9px 16px;
+      border-radius: var(--radius-md);
+      font-size: 11px;
+      font-weight: 600;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      opacity: 0;
+      transform: translateY(12px) scale(0.96);
+      pointer-events: none;
+      transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .toast-box.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .back-to-top-btn {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-full);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      color: var(--text-title);
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: all 0.2s ease;
+      z-index: 999;
+    }
+
+    .back-to-top-btn.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .back-to-top-btn:hover {
+      background: var(--primary-light);
+      color: white;
+      border-color: var(--primary-light);
+      transform: translateY(-2px);
+    }
+
+    /* Print Styles (Allows natural multi-page flow without breaking inside cards) */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 10mm 12mm 10mm 12mm;
+      }
+
+      body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        font-size: 9pt !important;
+        line-height: 1.4 !important;
+      }
+
+      .top-action-bar,
+      .scroll-progress-bar,
+      .screen-interactive-hub,
+      .toast-box,
+      .back-to-top-btn,
+      .no-print {
+        display: none !important;
+      }
+
+      .resume-wrapper {
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      .resume-sheet {
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+      }
+
+      .resume-sheet::before {
+        display: none !important;
+      }
+
+      .resume-section {
+        margin-bottom: 14px !important;
+        break-inside: auto !important;
+        page-break-inside: auto !important;
+      }
+
+      /* Prevent break inside individual cards */
+      .job-card,
+      .spotlight-card,
+      .bank-card,
+      .portfolio-tile,
+      .declaration-row,
+      .ai-hero-card,
+      .skill-card-detailed,
+      .personal-table-card {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+
+      .metrics-bar {
+        background: #f8fafc !important;
+        border: 1px solid #cbd5e1 !important;
+        padding: 8px !important;
+        margin-bottom: 12px !important;
+      }
+
+      a {
+        text-decoration: none !important;
+        color: inherit !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .resume-sheet {
+        padding: 18px 14px;
+      }
+      .metrics-bar {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .skills-detailed-grid,
+      .banking-matrix,
+      .ai-content-grid,
+      .education-grid,
+      .portfolio-grid,
+      .personal-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Reading Progress Bar (Screen Only) -->
+  <div class="scroll-progress-bar no-print" id="scrollProgressBar"></div>
+
+  <!-- Top Navigation (Screen Only) -->
+  <header class="top-action-bar no-print">
+    <div class="top-title-group">
+      <div class="brand-avatar">AK</div>
+      <div>
+        <div class="brand-name">Abhay Kumar Singh</div>
+        <div class="brand-role">Senior Full Stack Web Developer &amp; AI Solutions Engineer</div>
+      </div>
+    </div>
+    <div class="top-controls">
+      <button class="btn-action btn-secondary" onclick="copyResumeSummary()" title="Copy professional summary to clipboard">
+        <span>📋</span> <span>Copy Summary</span>
+      </button>
+      <button class="btn-action btn-secondary" id="themeToggleBtn" title="Toggle Light/Dark Theme">
+        <span id="themeIcon">🌙</span> <span id="themeText">Dark Mode</span>
+      </button>
+      <button class="btn-action btn-primary" onclick="window.print()" title="Print or Save Resume as PDF">
+        <span>🖨️</span> <span>Print / Save PDF</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Back to top floating button (Screen Only) -->
+  <button class="back-to-top-btn no-print" id="backToTopBtn" onclick="window.scrollTo({top:0, behavior:'smooth'})" title="Back to top">
+    ↑
+  </button>
+
+  <!-- Floating Toast Notification (Screen Only) -->
+  <div class="toast-box no-print" id="toastBox">
+    <span id="toastIcon">✨</span>
+    <span id="toastMessage">Notification</span>
+  </div>
+
+  <!-- Main Resume Content -->
+  <main class="resume-wrapper">
+    <article class="resume-sheet">
+
+      <!-- Screen Interactive Hub (Screen Only) -->
+      <div class="screen-interactive-hub no-print">
+        <nav class="quick-nav" aria-label="Resume Sections">
+          <a href="#summary">🧾 Summary</a>
+          <a href="#ai-skills">🤖 AI &amp; Tech Stack</a>
+          <a href="#experience">💼 Experience</a>
+          <a href="#banking">🏦 Axis Bank Modules</a>
+          <a href="#flagship">🌟 Flagship Projects</a>
+          <a href="#portfolio">📂 Commercial Portfolio</a>
+          <a href="#education">🎓 Education</a>
+        </nav>
+
+        <div class="filter-bar">
+          <span class="filter-label">🔍 Spotlight:</span>
+          <button class="filter-pill active" onclick="applySpotlight('all', this)">✨ All</button>
+          <button class="filter-pill" onclick="applySpotlight('ai', this)">🤖 GenAI &amp; Agents</button>
+          <button class="filter-pill" onclick="applySpotlight('backend', this)">⚡ Mezzio &amp; PHP 8</button>
+          <button class="filter-pill" onclick="applySpotlight('banking', this)">🏦 Axis Bank BFSI</button>
+          <button class="filter-pill" onclick="applySpotlight('db', this)">🗄️ MySQL &amp; Data</button>
+          <button class="filter-pill" onclick="applySpotlight('api', this)">🔗 REST &amp; eKYC</button>
+        </div>
+      </div>
+
+      <!-- Hero Header -->
+      <section class="hero-header">
+        <div class="hero-status-pill">
+          <span class="pulse-dot"></span>
+          Available for Senior Full Stack &amp; AI Engineering Roles
+        </div>
+        <h1 class="candidate-name">Abhay Kumar Singh</h1>
+        <div class="candidate-title">Senior Full Stack Web Developer &amp; AI Solutions Engineer</div>
+        <div class="candidate-domains">
+          Core PHP (7/8) &bull; Mezzio PHP Framework &bull; CodeIgniter 3/4 &bull; MySQL Database Architecture &bull; Agentic AI Workflows &bull; RESTful Microservices
+        </div>
+
+        <div class="hero-contact-grid">
+          <span class="contact-chip">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            New Delhi, India
+          </span>
+          <span class="contact-chip" onclick="copyContact('+918750908036', 'Phone number copied!')" title="Click to copy phone number">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            +91-8750908036
+          </span>
+          <span class="contact-chip" onclick="copyContact('as271070@gmail.com', 'Email copied!')" title="Click to copy email">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            as271070@gmail.com
+          </span>
+          <a href="https://www.linkedin.com/in/abhaywebdeveloper/" target="_blank" rel="noopener" class="contact-chip">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            linkedin.com/in/abhaywebdeveloper
+          </a>
+          <a href="https://github.com/abhaywebdeveloper/" target="_blank" rel="noopener" class="contact-chip">
+            <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            github.com/abhaywebdeveloper
+          </a>
+        </div>
+      </section>
+
+      <!-- Key Metrics Highlights Bar -->
+      <section class="metrics-bar" aria-label="Key Highlights">
+        <div class="metric-card" data-domain="backend">
+          <div class="metric-value">6+ Years</div>
+          <div class="metric-label">Full Stack Engineering</div>
+        </div>
+        <div class="metric-card" data-domain="banking">
+          <div class="metric-value">10+ Modules</div>
+          <div class="metric-label">Axis Bank BFSI Solutions</div>
+        </div>
+        <div class="metric-card" data-domain="api">
+          <div class="metric-value">2.5L+ Users</div>
+          <div class="metric-label">National Scale Platform</div>
+        </div>
+        <div class="metric-card" data-domain="ai">
+          <div class="metric-value">40% Velocity</div>
+          <div class="metric-label">Agentic AI Boost</div>
+        </div>
+      </section>
+
+      <!-- Professional Summary -->
+      <section id="summary" class="resume-section">
+        <div class="section-header">
+          <div class="section-icon-badge">🧾</div>
+          <h2 class="section-title">Professional Summary</h2>
+        </div>
+        <div class="summary-box">
+          Results-driven <strong>Senior Full Stack Web Developer &amp; AI Solutions Engineer</strong> with <strong>6+ years of extensive hands-on experience</strong> architecting, engineering, and scaling mission-critical web applications across <strong>enterprise banking (BFSI)</strong>, <strong>national regulatory bodies (QCI)</strong>, and <strong>high-volume commercial systems</strong>.<br><br>
+          Deep technical mastery in <strong>Core PHP 8+, Mezzio Framework (Laminas/Zend), CodeIgniter 3 &amp; 4, MySQL, and RESTful Microservices</strong>, coupled with cutting-edge expertise in <strong>Generative AI, Agentic AI developer workflows (Google Antigravity IDE, Cursor AI, Claude Code, GitHub Copilot), LLM API integrations, and automated production patch orchestration</strong>.<br><br>
+          Proven track record of engineering high-security branch banking modules for <strong>Axis Bank</strong> (handling millions of transactions with 100% data integrity and zero downtime) and pan-India government platforms serving over <strong>2,50,000 active users</strong>. Adept at transforming complex regulatory compliance mandates into clean-architecture, scalable software solutions.
+        </div>
+      </section>
+
+      <!-- AI & Technical Skills -->
+      <section id="ai-skills" class="resume-section">
+        <div class="section-header">
+          <div class="section-icon-badge">🤖</div>
+          <h2 class="section-title">Technical Stack &amp; AI Engineering</h2>
+        </div>
+
+        <!-- Signature AI Card -->
+        <div class="ai-hero-card" data-domain="ai">
+          <div class="ai-card-top">
+            <span class="ai-badge">⚡ Applied AI &amp; Automation Specialization</span>
+            <span style="font-size: 7.8pt; font-weight: 700; color: var(--ai-text); text-transform: uppercase;">Productivity Multiplier</span>
+          </div>
+          <div class="ai-content-grid">
+            <div class="ai-feature-row">
+              <span class="ai-feature-label">🧠 LLM APIs &amp; Integrations</span>
+              <div class="ai-feature-desc">Building intelligent web services, prompt workflows, automated content extraction, and contextual assistants.</div>
+              <div class="ai-tag-group">
+                <span class="ai-tag">OpenAI API (GPT-4o)</span>
+                <span class="ai-tag">Google Gemini API</span>
+                <span class="ai-tag">Anthropic Claude API</span>
+                <span class="ai-tag">Hugging Face Models</span>
+                <span class="ai-tag">RESTful AI Endpoints</span>
+              </div>
+            </div>
+            <div class="ai-feature-row">
+              <span class="ai-feature-label">🛠️ Agentic AI &amp; Autonomous Coding</span>
+              <div class="ai-feature-desc">Leveraging modern agentic IDEs and autonomous subagents for rapid code refactoring, bug triage, and test creation.</div>
+              <div class="ai-tag-group">
+                <span class="ai-tag">Google Antigravity IDE</span>
+                <span class="ai-tag">Cursor AI</span>
+                <span class="ai-tag">Claude Code</span>
+                <span class="ai-tag">GitHub Copilot</span>
+                <span class="ai-tag">Windsurf IDE</span>
+              </div>
+            </div>
+            <div class="ai-feature-row">
+              <span class="ai-feature-label">📐 Context Modeling &amp; Memory Systems</span>
+              <div class="ai-feature-desc">Architecting persistent AI memory structures (`.ai` index, rules engines, operational guidelines) to maintain exact repo knowledge.</div>
+              <div class="ai-tag-group">
+                <span class="ai-tag">`.ai` Long-Term Memory</span>
+                <span class="ai-tag">`AGENTS.md` Rules Engine</span>
+                <span class="ai-tag">Few-Shot Prompt Engineering</span>
+                <span class="ai-tag">Subagent Design</span>
+              </div>
+            </div>
+            <div class="ai-feature-row">
+              <span class="ai-feature-label">⚙️ Release &amp; Testing Automation</span>
+              <div class="ai-feature-desc">Automating complex database deployment suites, AST-level codebase upgrades, and OCR data cross-validation pipelines.</div>
+              <div class="ai-tag-group">
+                <span class="ai-tag">Automated SQL Patch Trilogies</span>
+                <span class="ai-tag">AST Code Refactoring</span>
+                <span class="ai-tag">Aadhaar OCR Data Validation</span>
+                <span class="ai-tag">Pre/Post Assertions</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Detailed Core Skills Grid -->
+        <div class="skills-detailed-grid">
+          <div class="skill-card-detailed" data-domain="backend">
+            <div class="skill-card-title">⚙️ Backend Architecture &amp; Frameworks</div>
+            <div class="skill-card-desc">Modern Object-Oriented PHP engineering, enterprise middleware pipelines, and scalable MVC/HMVC system design.</div>
+            <div class="skill-chips-row">
+              <span class="skill-chip">Core PHP (7.4 / 8.x)</span>
+              <span class="skill-chip">Mezzio Framework (Laminas/Zend)</span>
+              <span class="skill-chip">CodeIgniter 3 &amp; 4 (CI3/CI4)</span>
+              <span class="skill-chip">MVC &amp; HMVC</span>
+              <span class="skill-chip">PSR-7 / PSR-15 Middleware</span>
+              <span class="skill-chip">OOP &amp; SOLID Principles</span>
+              <span class="skill-chip">Design Patterns</span>
+              <span class="skill-chip">RBAC Security</span>
+            </div>
+          </div>
+
+          <div class="skill-card-detailed" data-domain="db">
+            <div class="skill-card-title">🗄️ Database Architecture &amp; Performance</div>
+            <div class="skill-card-desc">High-throughput relational databases, ACID compliance, point-in-time recovery, and bulk query optimization.</div>
+            <div class="skill-chips-row">
+              <span class="skill-chip">MySQL 5.7 / 8.0</span>
+              <span class="skill-chip">Oracle 10g/11g</span>
+              <span class="skill-chip">Single Multi-Row Bulk Inserts</span>
+              <span class="skill-chip">B-Tree Index Tuning</span>
+              <span class="skill-chip">ACID Transactions</span>
+              <span class="skill-chip">Snapshot Tables (`_BK_`)</span>
+              <span class="skill-chip">Zero-Loss Rollbacks</span>
+              <span class="skill-chip">phpMyAdmin</span>
+            </div>
+          </div>
+
+          <div class="skill-card-detailed" data-domain="api">
+            <div class="skill-card-title">🔗 Enterprise API &amp; Integrations</div>
+            <div class="skill-card-desc">Secure web service endpoints, biometric identity validation pipelines, and core financial integrations.</div>
+            <div class="skill-chips-row">
+              <span class="skill-chip">RESTful API Architecture</span>
+              <span class="skill-chip">Aadhaar eKYC (UIDAI Compliant)</span>
+              <span class="skill-chip">Payment Gateways (Razorpay, Paytm, CCAvenue, Cashfree)</span>
+              <span class="skill-chip">JSON / XML / cURL</span>
+              <span class="skill-chip">Core Banking Interfaces</span>
+              <span class="skill-chip">Webhooks &amp; Callbacks</span>
+            </div>
+          </div>
+
+          <div class="skill-card-detailed" data-domain="backend">
+            <div class="skill-card-title">🎨 Frontend &amp; DevOps Infrastructure</div>
+            <div class="skill-card-desc">Responsive user interfaces, asynchronous state handling, and zero-downtime server and release operations.</div>
+            <div class="skill-chips-row">
+              <span class="skill-chip">HTML5 &amp; CSS3</span>
+              <span class="skill-chip">JavaScript (ES6+) &amp; jQuery</span>
+              <span class="skill-chip">Bootstrap (4/5)</span>
+              <span class="skill-chip">Tailwind CSS</span>
+              <span class="skill-chip">Git / SVN</span>
+              <span class="skill-chip">Linux Shell</span>
+              <span class="skill-chip">Apache &amp; WampServer</span>
+              <span class="skill-chip">cPanel &amp; VPS Hosting</span>
+              <span class="skill-chip">NFS SmartPDF Storage</span>
+              <span class="skill-chip">3-Stage SQL Suites</span>
+              <span class="skill-chip">SSL/TLS &amp; DNS</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Professional Experience -->
+      <section id="experience" class="resume-section">
+        <div class="section-header">
+          <div class="section-icon-badge">💼</div>
+          <h2 class="section-title">Professional Experience</h2>
+        </div>
+
+        <div class="experience-list">
+
+          <!-- Role 1: Sapple Systems -->
+          <div class="job-card" data-domain="banking ai backend">
+            <div class="job-header">
+              <div class="job-role-company">
+                Software Developer &bull; <span class="job-company">Sapple Systems</span>
+              </div>
+              <div class="job-date-badge">Jan 2023 – Present &bull; New Delhi, India</div>
+            </div>
+            <div class="job-metrics-chips">
+              <span class="metric-chip ai">⚡ +40% Turnaround Velocity (Agentic AI)</span>
+              <span class="metric-chip">⚡ 65% SQL Latency Reduction</span>
+              <span class="metric-chip">⚡ Axis Bank BFSI Solutions</span>
+              <span class="metric-chip">⚡ UIDAI-Compliant eKYC Verification</span>
+            </div>
+            <ul class="impact-bullets">
+              <li><strong>Enterprise Banking Application Architecture:</strong> Designed, developed, and maintained mission-critical branch banking modules for <strong>Axis Bank</strong> utilizing the <strong>Mezzio PHP Framework (Laminas)</strong>, serving thousands of concurrent branch requests daily with zero tolerance for downtime or data inconsistency.</li>
+              <li><strong>Agentic AI Workflow Adoption:</strong> Pioneered the integration of autonomous coding assistants and Agentic AI workflows (Google Antigravity IDE, Cursor AI, Copilot) across sprint cycles, accelerating feature turnaround by <strong>40%</strong> and catching complex edge cases prior to staging.</li>
+              <li><strong>Zero-Downtime Patch Engineering:</strong> Architected standardized 3-stage SQL release pipelines (`01_backup.sql`, `02_deploy.sql`, `03_rollback.sql`) with automated row-count assertion validation, safeguarding production data integrity across high-stakes banking releases.</li>
+              <li><strong>High-Throughput Database Optimization:</strong> Refactored legacy row-by-row queries into single multi-row bulk insert/update architectures across form-marker mapping tables, cutting SQL execution time by over <strong>65%</strong>.</li>
+              <li><strong>Identity Verification &amp; Security Compliance:</strong> Implemented regulatory-compliant Aadhaar-based eKYC verification pipelines with SHA-256 payload encryption, customer data masking, and role-based audit trail tracking conforming strictly to UIDAI and RBI guidelines.</li>
+              <li><strong>Cross-Functional Collaboration:</strong> Partnered closely with enterprise solution architects, banking compliance officers, and QA teams to translate complex regulatory mandates into production-ready software specifications.</li>
+            </ul>
+          </div>
+
+          <!-- Role 2: Orrish IT -->
+          <div class="job-card" data-domain="api backend">
+            <div class="job-header">
+              <div class="job-role-company">
+                Software Developer &bull; <span class="job-company">Orrish IT Solution Design</span>
+              </div>
+              <div class="job-date-badge">Jan 2021 – Dec 2023 &bull; New Delhi, India</div>
+            </div>
+            <div class="job-metrics-chips">
+              <span class="metric-chip">⚡ 2,50,000+ Sarpanch Scale</span>
+              <span class="metric-chip">⚡ 45% Response Time Improvement</span>
+              <span class="metric-chip">⚡ CodeIgniter 4 Modernization</span>
+            </div>
+            <ul class="impact-bullets">
+              <li><strong>High-Concurrency Public Sector Applications:</strong> Engineered scalable RESTful backend services and administration portals for nationwide public sector projects, including the <strong>Sarpanch Samvaad platform</strong> connecting over <strong>2,50,000 village heads across India</strong>.</li>
+              <li><strong>Legacy Architecture Modernization:</strong> Led the migration of legacy monolithic PHP systems into structured <strong>CodeIgniter 4 (CI4)</strong> MVC architecture, reducing server response times by <strong>45%</strong> and enhancing modular code maintainability.</li>
+              <li><strong>Payment &amp; Messaging Systems:</strong> Integrated multiple payment gateways (Razorpay, Paytm) and automated SMS/email notification microservices across corporate client portals.</li>
+              <li><strong>Infrastructure &amp; Server Administration:</strong> Managed VPS hosting environments, scheduled automated database backup routines, installed SSL/TLS certificates, and configured domain DNS routing.</li>
+            </ul>
+          </div>
+
+          <!-- Role 3: Five Design -->
+          <div class="job-card" data-domain="backend">
+            <div class="job-header">
+              <div class="job-role-company">
+                Software Developer &bull; <span class="job-company">Five Design</span>
+              </div>
+              <div class="job-date-badge">Jan 2020 – Jan 2021 &bull; New Delhi, India</div>
+            </div>
+            <div class="job-metrics-chips">
+              <span class="metric-chip">⚡ 20+ Client Platforms Delivered</span>
+              <span class="metric-chip">⚡ Mobile-First Responsive UI/UX</span>
+            </div>
+            <ul class="impact-bullets">
+              <li><strong>Full-Stack Web Engineering:</strong> Delivered over 20+ responsive web platforms and custom e-commerce portals for domestic and international clients with mobile-first UI architecture.</li>
+              <li><strong>Frontend Performance &amp; Integration:</strong> Crafted pixel-perfect user interfaces using HTML5, CSS3, JavaScript, jQuery, and Bootstrap with seamless asynchronous AJAX data binding.</li>
+              <li><strong>Quality Assurance &amp; SEO Standards:</strong> Collaborated with UI/UX designers and QA testers to ensure cross-browser stability, fast load speeds, and strict SEO compliance.</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Axis Bank Enterprise Modules Matrix -->
+      <section id="banking" class="resume-section">
+        <div class="section-header">
+          <div class="section-icon-badge">🏦</div>
+          <h2 class="section-title">Enterprise Banking Modules (Axis Bank)</h2>
+        </div>
+        <div style="font-size: 8.6pt; color: var(--text-muted); margin-bottom: 8px;">
+          Engineered using <strong>Mezzio PHP Framework (Laminas)</strong> &bull; <strong>MySQL / Oracle DB</strong> &bull; <strong>NFS SmartPDF Storage</strong>
+        </div>
+        <div class="banking-matrix">
+          <div class="bank-card" data-domain="banking">
+            <div class="bank-card-head">
+              <span class="bank-card-title">ReKYC-RI (Resident Indian)</span>
+              <span class="bank-pill">BFSI Core</span>
+            </div>
+            <div class="bank-card-desc">End-to-end periodic Know-Your-Customer digital refresh platform featuring automated Aadhaar biometric validation, identity document upload pipelines, and dynamic form rendering.</div>
+          </div>
+          <div class="bank-card" data-domain="banking">
+            <div class="bank-card-head">
+              <span class="bank-card-title">ReKYC-NRI (Non-Resident)</span>
+              <span class="bank-pill">Compliance</span>
+            </div>
+            <div class="bank-card-desc">Overseas regulatory compliance workflow managing international passport/visa proofs, foreign embassy stamps, overseas address verification, and multi-tier officer approvals.</div>
+          </div>
+          <div class="bank-card" data-domain="banking">
+            <div class="bank-card-head">
+              <span class="bank-card-title">Scheme Conversion</span>
+              <span class="bank-pill">High Volume</span>
+            </div>
+            <div class="bank-card-desc">Account type upgrade/downgrade engine with dynamic multi-page PDF generation, NFS template cleansing, and atomic database commits across BranchForms tables.</div>
+          </div>
+          <div class="bank-card" data-domain="banking">
+            <div class="bank-card-head">
+              <span class="bank-card-title">Aadhaar Seeding</span>
+              <span class="bank-pill">UIDAI Secure</span>
+            </div>
+            <div class="bank-card-desc">Direct account-to-Aadhaar linking module adhering strictly to UIDAI encryption standards, status tracking callbacks, and NPCI mapper validation routines.</div>
+          </div>
+          <div class="bank-card" data-domain="banking">
+            <div class="bank-card-head">
+              <span class="bank-card-title">Auto FD (Fixed Deposit)</span>
+              <span class="bank-pill">Core FinTech</span>
+            </div>
+            <div class="bank-card-desc">Automated term deposit creation workflow integrated with core banking interest calculation systems, maturity instructions, and nominee inheritance rules.</div>
+          </div>
+          <div class="bank-card" data-domain="banking">
+            <div class="bank-card-head">
+              <span class="bank-card-title">Burgundy Banking</span>
+              <span class="bank-pill">HNI Services</span>
+            </div>
+            <div class="bank-card-desc">Premium High-Net-Worth customer relationship onboarding platform featuring tailored banking privileges, wealth management routing, and priority verification.</div>
+          </div>
+          <div class="bank-card" data-domain="banking">
+            <div class="bank-card-head">
+              <span class="bank-card-title">Family Banking</span>
+              <span class="bank-pill">Relational</span>
+            </div>
+            <div class="bank-card-desc">Hierarchical account clustering allowing pooled balance eligibility, multi-generational tier upgrades, and consolidated family statement views.</div>
+          </div>
+          <div class="bank-card" data-domain="banking">
+            <div class="bank-card-head">
+              <span class="bank-card-title">Nominee Management</span>
+              <span class="bank-pill">Audit Ready</span>
+            </div>
+            <div class="bank-card-desc">Comprehensive nomination registration, percentage allocation, deletion, and modification workflows with strict lineage validation and guardian consent tracking.</div>
+          </div>
+          <div class="bank-card" data-domain="banking">
+            <div class="bank-card-head">
+              <span class="bank-card-title">DEAF Claim</span>
+              <span class="bank-pill">RBI Mandate</span>
+            </div>
+            <div class="bank-card-desc">Depositor Education and Awareness Fund claim engine for processing unclaimed deposits, historical ledger reconciliation, and claim settlement per RBI mandates.</div>
+          </div>
+          <div class="bank-card" data-domain="banking">
+            <div class="bank-card-head">
+              <span class="bank-card-title">M2M (Account Transfers)</span>
+              <span class="bank-pill">Intra-Branch</span>
+            </div>
+            <div class="bank-card-desc">Automated intra-branch and inter-account mapping and balance transfers with multi-step authorization state machines and ledger audit logging.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Flagship Projects -->
+      <section id="flagship" class="resume-section">
+        <div class="section-header">
+          <div class="section-icon-badge">🌟</div>
+          <h2 class="section-title">Flagship Enterprise &amp; Government Projects</h2>
+        </div>
+
+        <div class="spotlight-card" data-domain="backend api">
+          <div class="spotlight-header">
+            <div class="spotlight-title">🏛️ NABCB Accreditation Portal</div>
+            <div class="spotlight-client">National Accreditation Board for Certification Bodies (Quality Council of India - QCI) &bull; Jan 2023 – Jul 2025</div>
+          </div>
+          <div class="spotlight-tech">
+            Tech Stack: PHP, CodeIgniter 4, MySQL, Bootstrap, jQuery, AJAX, REST APIs &bull; 
+            <a href="https://nabcbportal.qci.org.in" target="_blank" rel="noopener" class="spotlight-link">nabcbportal.qci.org.in ↗</a>
+          </div>
+          <ul class="impact-bullets">
+            <li><strong>Accreditation Lifecycle Management:</strong> Architected the complete end-to-end accreditation portal governing certification bodies nationwide in alignment with international ISO/IEC compliance standards.</li>
+            <li><strong>Role-Based Access Control (RBAC):</strong> Designed multi-tiered role access permissions for assessors, lead evaluators, secretariats, and applicant certifying bodies with granular document access controls.</li>
+            <li><strong>Automated Compliance Follow-up Engine:</strong> Built automated notification triggers for audit non-conformities, surveillance schedules, assessor assignments, and renewal timelines, drastically reducing manual administrative workload.</li>
+          </ul>
+        </div>
+
+        <div class="spotlight-card" data-domain="api backend">
+          <div class="spotlight-header">
+            <div class="spotlight-title">🌐 Sarpanch Samvaad Pan-India Application</div>
+            <div class="spotlight-client">Ministry / Quality Council of India (QCI) &bull; Jul 2022 – Aug 2023</div>
+          </div>
+          <div class="spotlight-tech">
+            Tech Stack: PHP, CodeIgniter 4, MySQL, High-Concurrency REST APIs, JSON Microservices
+          </div>
+          <ul class="impact-bullets">
+            <li><strong>Pan-India Grassroots Network:</strong> Engineered scalable RESTful backend services powering a nationwide networking platform connecting over <strong>2,50,000 (2.5 Lakh) Sarpanchs (Village Heads)</strong> across all states of India.</li>
+            <li><strong>Multilingual Scheme Dissemination:</strong> Developed localized content feeds, government developmental updates, peer-to-peer discussion boards, and real-time announcement channels.</li>
+            <li><strong>Concurrency &amp; High-Availability Tuning:</strong> Optimized MySQL database indexes and query caching strategies to seamlessly handle viral traffic surges and concurrent user interactions without latency degradation.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Featured Commercial Portfolio -->
+      <section id="portfolio" class="resume-section">
+        <div class="section-header">
+          <div class="section-icon-badge">📂</div>
+          <h2 class="section-title">Featured Commercial &amp; Digital Portfolio (100+ Solutions)</h2>
+        </div>
+        <div class="portfolio-grid">
+          <div class="portfolio-tile" data-domain="backend">
+            <div class="portfolio-tile-name">
+              <span>🛍️ Poolxpool Products</span>
+              <span class="portfolio-tile-cat">E-Commerce</span>
+            </div>
+            <div class="portfolio-tile-desc">Scalable swimming pool accessories marketplace featuring dynamic category filtering, shopping cart workflows, automated PDF invoice generation, and SEO-optimized frontend architecture.</div>
+          </div>
+          <div class="portfolio-tile" data-domain="backend">
+            <div class="portfolio-tile-name">
+              <span>🤝 Niswarth Sewa NGO</span>
+              <span class="portfolio-tile-cat">Social Impact</span>
+            </div>
+            <div class="portfolio-tile-desc">Modern NGO platform with secure online donation gateway integration, automated 80G tax exemption receipts, volunteer management, and social awareness campaigns.</div>
+          </div>
+          <div class="portfolio-tile" data-domain="backend">
+            <div class="portfolio-tile-name">
+              <span>🏢 AISM Group</span>
+              <span class="portfolio-tile-cat">Corporate Solution</span>
+            </div>
+            <div class="portfolio-tile-desc">Enterprise corporate web platform showcasing multi-industry business services, dynamic client inquiry routing, interactive portfolio galleries, and automated CRM lead distribution.</div>
+          </div>
+          <div class="portfolio-tile" data-domain="backend">
+            <div class="portfolio-tile-name">
+              <span>🌉 Magic Bridge</span>
+              <span class="portfolio-tile-cat">Youth Empowerment</span>
+            </div>
+            <div class="portfolio-tile-desc">Digital community portal supporting youth development programs, mentorship session bookings, dynamic event calendars, and secure content publication workflows.</div>
+          </div>
+          <div class="portfolio-tile" data-domain="backend">
+            <div class="portfolio-tile-name">
+              <span>🛒 Southbysea</span>
+              <span class="portfolio-tile-cat">Lifestyle E-Commerce</span>
+            </div>
+            <div class="portfolio-tile-desc">Mobile-first lifestyle apparel store featuring instant catalog search, cart session retention, multi-vendor payment checkout, and order status tracking.</div>
+          </div>
+          <div class="portfolio-tile" data-domain="backend">
+            <div class="portfolio-tile-name">
+              <span>✈️ Urban Visas</span>
+              <span class="portfolio-tile-cat">Consultancy Portal</span>
+            </div>
+            <div class="portfolio-tile-desc">Comprehensive immigration and visa consultancy platform with client-intake assessment forms, document requirement checklists, consultation bookings, and lead management.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Education & Continuous Learning -->
+      <section id="education" class="resume-section">
+        <div class="section-header">
+          <div class="section-icon-badge">🎓</div>
+          <h2 class="section-title">Education &amp; Continuous Learning</h2>
+        </div>
+        <div class="education-grid">
+          <div class="education-item">
+            <div class="education-degree">Master of Computer Applications (MCA)</div>
+            <div class="education-inst">Indira Gandhi National Open University (IGNOU) &bull; Graduated: <strong>2023</strong></div>
+          </div>
+          <div class="education-item">
+            <div class="education-degree">Bachelor of Computer Applications (BCA)</div>
+            <div class="education-inst">Indira Gandhi National Open University (IGNOU) &bull; Graduated: <strong>2021</strong></div>
+          </div>
+          <div class="education-item">
+            <div class="education-degree">Higher Secondary Examination (12th)</div>
+            <div class="education-inst">Bihar School Examination Board (BSEB) &bull; Completed: <strong>2015</strong></div>
+          </div>
+          <div class="education-item">
+            <div class="education-degree">Secondary School Examination (10th)</div>
+            <div class="education-inst">Bihar School Examination Board (BSEB) &bull; Completed: <strong>2013</strong></div>
+          </div>
+        </div>
+        <div style="margin-top: 8px; font-size: 8.5pt; color: var(--text-muted); line-height: 1.4;">
+          <strong>Continuous Upskilling &amp; Advanced Specialization:</strong> AI-Assisted Software Engineering &bull; Modern PHP 8+ Standards &bull; OWASP Security &bull; RESTful Microservices Architecture &bull; Relational Database Tuning.
+        </div>
+      </section>
+
+      <!-- Personal Information & Declaration -->
+      <section class="resume-section">
+        <div class="section-header">
+          <div class="section-icon-badge">👤</div>
+          <h2 class="section-title">Personal Details &amp; Declaration</h2>
+        </div>
+        <div class="personal-table-card">
+          <div class="personal-grid">
+            <div class="personal-field">
+              <strong>Father's Name</strong>
+              Mr. Parshuram Singh
+            </div>
+            <div class="personal-field">
+              <strong>Date of Birth</strong>
+              20-December-1996
+            </div>
+            <div class="personal-field">
+              <strong>Nationality</strong>
+              Indian
+            </div>
+            <div class="personal-field">
+              <strong>Languages Known</strong>
+              English (Proficient), Hindi (Native)
+            </div>
+            <div class="personal-field">
+              <strong>Marital Status</strong>
+              Unmarried
+            </div>
+            <div class="personal-field">
+              <strong>Current Location</strong>
+              New Delhi, India
+            </div>
+          </div>
+
+          <div class="declaration-row">
+            <div>
+              I hereby declare that all the information provided above is true, complete, and correct to the best of my knowledge and belief.<br><br>
+              <strong>Date:</strong> ____________________ &nbsp;&nbsp;|&nbsp;&nbsp; <strong>Place:</strong> New Delhi, India
+            </div>
+            <div style="text-align: right;">
+              <div class="sign-name">(ABHAY KUMAR SINGH)</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+  <!-- Interactive JavaScript Engine -->
+  <script>
+    (function () {
+      // 1. Reading Progress Bar Engine
+      const scrollBar = document.getElementById('scrollProgressBar');
+      window.addEventListener('scroll', function() {
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const percent = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+        if (scrollBar) {
+          scrollBar.style.width = percent + '%';
+        }
+        
+        // Back to top visibility
+        const backBtn = document.getElementById('backToTopBtn');
+        if (backBtn) {
+          if (scrollTop > 280) {
+            backBtn.classList.add('visible');
+          } else {
+            backBtn.classList.remove('visible');
+          }
+        }
+      });
+
+      // 2. Dark / Light Mode Switcher with localStorage
+      const themeToggleBtn = document.getElementById('themeToggleBtn');
+      const themeIcon = document.getElementById('themeIcon');
+      const themeText = document.getElementById('themeText');
+      const htmlEl = document.documentElement;
+
+      const savedTheme = localStorage.getItem('resume_theme') || 'light';
+      setTheme(savedTheme);
+
+      themeToggleBtn.addEventListener('click', function () {
+        const currentTheme = htmlEl.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        setTheme(newTheme);
+      });
+
+      function setTheme(theme) {
+        htmlEl.setAttribute('data-theme', theme);
+        localStorage.setItem('resume_theme', theme);
+        if (theme === 'dark') {
+          themeIcon.textContent = '☀️';
+          themeText.textContent = 'Light Mode';
+        } else {
+          themeIcon.textContent = '🌙';
+          themeText.textContent = 'Dark Mode';
+        }
+      }
+
+      // 3. Spotlight Filter Engine
+      window.applySpotlight = function(domain, buttonEl) {
+        const pills = document.querySelectorAll('.filter-pill');
+        pills.forEach(p => p.classList.remove('active'));
+        if (buttonEl) buttonEl.classList.add('active');
+
+        const allTargetCards = document.querySelectorAll('[data-domain]');
+        
+        if (domain === 'all') {
+          allTargetCards.forEach(card => {
+            card.classList.remove('spotlight-active', 'spotlight-dimmed');
+          });
+          showToast('Showing all competencies');
+          return;
+        }
+
+        allTargetCards.forEach(card => {
+          const cardDomains = (card.getAttribute('data-domain') || '').split(' ');
+          if (cardDomains.includes(domain)) {
+            card.classList.add('spotlight-active');
+            card.classList.remove('spotlight-dimmed');
+          } else {
+            card.classList.remove('spotlight-active');
+            card.classList.add('spotlight-dimmed');
+          }
+        });
+
+        showToast(`Spotlight: ${buttonEl.textContent.trim()}`);
+      };
+
+      // 4. Click-to-Copy Contacts & Summary
+      window.copyContact = function(text, successMsg) {
+        navigator.clipboard.writeText(text).then(function() {
+          showToast(`📋 ${successMsg}`);
+        }).catch(function() {
+          prompt('Copy to clipboard:', text);
+        });
+      };
+
+      window.copyResumeSummary = function() {
+        const summaryText = "Abhay Kumar Singh — Senior Full Stack Web Developer & AI Solutions Engineer (6+ Years Exp | Core PHP 8+, Mezzio, CI3/4, MySQL, Axis Bank BFSI Systems, Agentic AI Workflows, LLM APIs). Phone: +91-8750908036 | Email: as271070@gmail.com";
+        navigator.clipboard.writeText(summaryText).then(function() {
+          showToast("📋 Professional summary copied to clipboard!");
+        });
+      };
+
+      // 5. Toast Notification System
+      let toastTimeout;
+      function showToast(message) {
+        const toast = document.getElementById('toastBox');
+        const toastMsg = document.getElementById('toastMessage');
+        if (!toast || !toastMsg) return;
+
+        toastMsg.textContent = message;
+        toast.classList.add('show');
+
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(function() {
+          toast.classList.remove('show');
+        }, 2200);
+      }
+    })();
+  </script>
+
+</body>
+</html>
